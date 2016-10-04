@@ -1,6 +1,6 @@
 # Template file for 'afl'
 pkgname=afl
-version=2.33b
+version=2.35b
 revision=1
 build_style=gnu-makefile
 # x86 only currently
@@ -11,7 +11,7 @@ maintainer="Juan RP <xtraeme@voidlinux.eu>"
 license="Apache-2.0"
 homepage="http://lcamtuf.coredump.cx/afl/"
 distfiles="http://lcamtuf.coredump.cx/afl/releases/afl-${version}.tgz"
-checksum=7dcdb5c783d5cd10ade1a86942e605f69286383a61eb66235cc1a72b4eff24d5
+checksum=596167527ad7a69cf06dc8143a051eb8b2ee04f159447a3086f6e60ae460bcea
 nopie=yes  # clang flags
 
 nostrip_files="small_archive.a small_exec.elf"

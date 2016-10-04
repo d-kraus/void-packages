@@ -1,6 +1,6 @@
 # Template file for 'eog'
 pkgname=eog
-version=3.18.2
+version=3.20.4
 revision=1
 lib32disabled=yes
 build_style=gnu-configure
@@ -17,7 +17,7 @@ maintainer="Juan RP <xtraeme@voidlinux.eu>"
 homepage="http://www.gnome.org"
 license="GPL-2"
 distfiles="${GNOME_SITE}/eog/${version%.*}/eog-$version.tar.xz"
-checksum=dc2d16e3754cad12703261fe586e7599c4df2e39282f6c28681a514f749fe636
+checksum=968774cc07ea0d3c27ac552dc0f1d51cf682b9036d342b447688a208f31a5be3
 
 if [ -z "$CROSS_BUILD" ]; then
 	build_options_default="gir"

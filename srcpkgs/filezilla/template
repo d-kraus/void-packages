@@ -1,6 +1,6 @@
 # Template file for 'filezilla'
 pkgname=filezilla
-version=3.19.0
+version=3.22.1
 revision=1
 nocross=yes
 build_style=gnu-configure
@@ -15,4 +15,4 @@ maintainer="Juan RP <xtraeme@voidlinux.eu>"
 license="GPL-2"
 homepage="http://filezilla-project.org/"
 distfiles="${SOURCEFORGE_SITE}/${pkgname}/FileZilla_${version}_src.tar.bz2"
-checksum=82a68742a02726d5559e3193e5c7d96f0f9105f4053e7959fef3225b65f84720
+checksum=2ea8a0d613e062c34c01b0a1c0860e1328bb8247eb02aa73ef4597d984e4285f

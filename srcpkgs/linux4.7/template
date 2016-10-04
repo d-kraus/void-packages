@@ -1,6 +1,6 @@
 # Template file for 'linux4.7'
 pkgname=linux4.7
-version=4.7.2
+version=4.7.6
 revision=1
 wrksrc="linux-${version}"
 maintainer="Juan RP <xtraeme@voidlinux.eu>"
@@ -8,7 +8,7 @@ homepage="http://www.kernel.org"
 license="GPL-2"
 short_desc="The Linux kernel and modules (${version%.*} series)"
 distfiles="https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-${version}.tar.xz"
-checksum=58493ee6569484fab1658e680fbb7a72ad75f02211316628fe7ee5fd39f96488
+checksum=7b516520c3dc3a18b1ad30ca54603d9bb31e32ab51fa6b882a02b05e10d32dd2
 
 nocross=yes
 nodebug=yes

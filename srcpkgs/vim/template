@@ -1,7 +1,7 @@
 # Template file for 'vim'
 pkgname=vim
-version=7.4.2207
-revision=2
+version=8.0.0005
+revision=1
 hostmakedepends="pkg-config glib-devel"
 makedepends="ncurses-devel acl-devel libXt-devel gtk+-devel perl
  ruby-devel python-devel python3.4-devel lua-devel"
@@ -11,7 +11,7 @@ maintainer="Juan RP <xtraeme@voidlinux.eu>"
 homepage="http://www.vim.org"
 license="Vim"
 distfiles="https://github.com/${pkgname}/${pkgname}/archive/v${version}.tar.gz>${pkgname}-${version}.tar.gz"
-checksum=34a7b60cfbab6dfbb6366a3c069698c06d4c37038d61ec5ca591e2e4453c0b1a
+checksum=4ad6b4e8fad6412724a665d974e1be3138a9562a5f4f4aab17debf709c1d3ad3
 
 subpackages="xxd vim-common vim-x11 gvim"
 # XXX vim-huge cannot be cross compiled for now.
@@ -143,7 +143,8 @@ gvim_package() {
 			install -d ${PKGDESTDIR}/usr/share/icons/hicolor/${d}x${d}/apps
 		done
 		make -C src DESTDIR=${PKGDESTDIR} installvimbin install-icons
-		vinstall ${FILESDIR}/gvim.desktop 644 usr/share/applications
+		vmove usr/share/applications/gvim.desktop
+		rm "$PKGDESTDIR"/usr/share/applications/vim.desktop
 	}
 }
 vim-huge_package() {

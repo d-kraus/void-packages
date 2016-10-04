@@ -1,7 +1,6 @@
 # Template file for 'bird'
-
 pkgname=bird
-version=1.6.0
+version=1.6.2
 revision=1
 build_style=gnu-configure
 short_desc="The BIRD Internet Routing Daemon"
@@ -13,7 +12,7 @@ hostmakedepends="flex"
 makedepends="ncurses-devel readline-devel"
 configure_args="--sbindir=/usr/bin"
 conf_files="/etc/bird.conf /etc/bird6.conf"
-checksum=db3dfe37deac73b38b7d6966e577985f7b8e23f246760cb095ad13b0d8010e13
+checksum=8853f857045057e02c645232629754e9f5554eafa9d19fdef6097af72a3a98f6
 
 pre_configure() {
 	mkdir -p /tmp/bird6

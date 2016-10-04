@@ -1,13 +1,13 @@
 # Template build file for 'firefox'.
 pkgname=firefox
-version=48.0.2
+version=49.0.1
 revision=1
 short_desc="Lightweight gecko-based web browser"
 maintainer="Juan RP <xtraeme@voidlinux.eu>"
 homepage="https://www.mozilla.org/firefox/"
 license="MPL-1.1, GPL-2, LGPL-2.1"
 distfiles="${MOZILLA_SITE}/${pkgname}/releases/${version}/source/${pkgname}-${version}.source.tar.xz"
-checksum=6efbe0cc8dd120f16ff6d9394d96ea1b13bf6b4163d3b25d4210e06d23ea44b3
+checksum=eb43e24e644e3a9d663f896b96b57fb5e10195749f8a8dfe0300a626064b920d
 
 only_for_archs="i686 i686-musl x86_64 x86_64-musl"
 nopie=yes
@@ -29,9 +29,19 @@ makedepends="
 depends="nss>=3.21 desktop-file-utils hicolor-icon-theme"
 conflicts="firefox-esr>=0"
 
+build_options_default="gtk3"
 case "$XBPS_TARGET_MACHINE" in
-	x86_64*) build_options_default="rust" ;;
+	x86_64*) build_options_default+=" rust" ;;
 esac
+
+_gccver=$(gcc --version | awk '/^gcc \(GCC\)/ { print $3 }')
+if [ "${_gccver%%.*}" -gt 5 ]; then
+	# Append CFLAGS and CXXFLAGS to set work around code which gcc6 would
+	# otherwise regard as out-of-specification and allow it to produce a
+	# working program.
+	CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
+	CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
+fi
 
 post_extract() {
 	[ ! -d "${wrkdrc}/xbps-build" ] && mkdir -p "${wrksrc}/xbps-build"
@@ -103,7 +113,7 @@ do_configure() {
 		--with-pthreads --enable-official-branding --enable-safe-browsing \
 		--disable-debug --disable-gconf --disable-crashreporter --disable-updater \
 		--disable-tests --disable-elf-hack --with-system-icu --enable-pulseaudio \
-		--disable-crashreporter --with-nspr-prefix=${XBPS_CROSS_BASE}/usr \
+		--with-nspr-prefix=${XBPS_CROSS_BASE}/usr \
 		--with-nss-prefix=${XBPS_CROSS_BASE}/usr \
 		--with-google-api-keyfile="${wrksrc}/google-api-key" \
 		--enable-optimize="$CFLAGS" --disable-strip --disable-install-strip \

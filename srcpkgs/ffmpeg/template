@@ -1,13 +1,13 @@
 # Template file for 'ffmpeg'
 pkgname=ffmpeg
-version=2.8.7
-revision=4
+version=3.1.4
+revision=1
 short_desc="Decoding, encoding and streaming software"
 maintainer="Juan RP <xtraeme@voidlinux.eu>"
 license="GPL-3"
 homepage="http://www.ffmpeg.org"
 distfiles="${homepage}/releases/ffmpeg-${version}.tar.bz2"
-checksum=8777ce4a335640fdd13680ba423ef6da330ff5071bfbe27cdbb452379167efe5
+checksum=7c99df75a4dc12d22c0f1ed11d0acf98cac1f8b5fe7a7434344b167f810bcbfa
 
 hostmakedepends="pkg-config perl yasm"
 makedepends="zlib-devel bzip2-devel freetype-devel alsa-lib-devel libXfixes-devel
@@ -27,6 +27,11 @@ case "$XBPS_TARGET_MACHINE" in
 esac
 
 do_configure() {
+	# Fix gcc on x86_64-musl only
+	if [ "$XBPS_TARGET_MACHINE" = "x86_64-musl" ]; then
+		sed -i configure -e "s;_cflags_speed='-O3';_cflags_speed='-O2';"
+	fi
+
 	if [ "$CROSS_BUILD" ]; then
 		case "$XBPS_TARGET_MACHINE" in
 			arm*) _arch="arm";;

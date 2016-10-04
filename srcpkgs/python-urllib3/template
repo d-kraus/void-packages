@@ -1,6 +1,6 @@
 # Template file for 'python-urllib3'
 pkgname=python-urllib3
-version=1.16
+version=1.18
 revision=1
 noarch=yes
 wrksrc="urllib3-${version}"
@@ -11,10 +11,10 @@ depends="python-six"
 pycompile_module="urllib3"
 short_desc="HTTP library with thread-safe connection pooling (Python2)"
 maintainer="Alessio Sergi <al3hex@gmail.com>"
-homepage="https://github.com/shazow/urllib3"
+homepage="https://urllib3.readthedocs.io/"
 license="MIT"
 distfiles="${PYPI_SITE}/u/urllib3/urllib3-${version}.tar.gz"
-checksum=63d479478ddfc83bbc11577dc16d47835c5179ac13e550118ca143b62c4bf9ab
+checksum=d30dd4d1cbbc36ebab6e4a2076820cfe0c60f10adf087fecbc5a3edae79fdc81
 
 post_install() {
 	# replace bundled copy of six

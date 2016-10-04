@@ -1,15 +1,19 @@
 # Template file for 'libbson'
 pkgname=libbson
-version=1.4.0
+version=1.4.2
 revision=1
 build_style=gnu-configure
-hostmakedepends="perl"
+hostmakedepends="perl automake libtool"
 short_desc="The libbson BSON serialization library"
 maintainer="Juan RP <xtraeme@voidlinux.eu>"
 license="Apache-2.0"
 homepage="https://github.com/mongodb/libbson"
-distfiles="https://github.com/mongodb/libbson/releases/download/${version}/libbson-${version}.tar.gz"
-checksum=1f4e330d40601c4462534684bbc6e868205817c8cee54be8c12d2d73bd02b751
+distfiles="https://github.com/mongodb/libbson/archive/${version}.tar.gz"
+checksum=6a79fdad6ad282c75974c783b794a613b745c27ddc8821b2d947a2f97565b049
+
+pre_configure() {
+	NOCONFIGURE=1 ./autogen.sh
+}
 
 libbson-devel_package() {
 	short_desc+=" - development files"

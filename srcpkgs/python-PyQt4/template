@@ -1,11 +1,11 @@
 # Template file for 'python-PyQt4'
 pkgname=python-PyQt4
 version=4.11.4
-revision=2
+revision=4
 wrksrc="PyQt-x11-gpl-${version}"
 hostmakedepends="pkg-config"
 makedepends="python-devel python3.4-devel python-sip-devel python3.4-sip-devel
- qt-devel dbus-devel python-dbus-devel MesaLib-devel phonon-devel"
+ qt-devel qt-webkit-devel dbus-devel python-dbus-devel MesaLib-devel phonon-devel"
 depends="python-sip"
 pycompile_module="PyQt4"
 short_desc="Python2 bindings for the Qt4 toolkit"
@@ -27,6 +27,9 @@ _do_pyqt4_build() {
 	python${pyver} configure-ng.py --confirm-license --assume-shared $tools \
 		CC="${CC}" CFLAGS="${CFLAGS}" CXX="${CXX}" CXXFLAGS="${CXXFLAGS}" \
 		LINK="${CXX}" LINK_SHLIB="${CXX}" LFLAGS="${LDFLAGS}" STRIP=""
+	find -name Makefile -exec sed -i "{}" \
+		-e "s;^\(CXXFLAGS.*=.*\);& $CXXFLAGS;" \
+		-e "s;^\(LFLAGS.*=.*\);& $LDFLAGS;" \;
 	make ${makejobs}
 }
 pre_build() {

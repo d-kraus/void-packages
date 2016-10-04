@@ -1,9 +1,12 @@
 # Template file for 'libqtelegram-ae'
 pkgname=libqtelegram-ae
+reverts=10.0.0_1
 version=6.1
-revision=2
+revision=3
 wrksrc=${pkgname/-ae/-aseman-edition}-${version}-stable
 build_style=qmake
+# See https://github.com/Aseman-Land/libqtelegram-aseman-edition/issues/44
+configure_args="QMAKE_CFLAGS_ISYSTEM="
 hostmakedepends="qt5-qmake"
 makedepends="qt5-devel qt5-multimedia-devel"
 short_desc="A libqtelegram fork by Aseman Team"
